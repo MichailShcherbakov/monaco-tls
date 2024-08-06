@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "packageManager": "yarn@4.4.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx ./src/main.ts",
+    "dev": "tsx watch ./src/main.ts"
+  },
+  "dependencies": {
+    "typescript": "^5.5.4",
+    "typescript-language-server": "^4.3.3",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-ws-jsonrpc": "^3.3.2",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.16.5"
+  }
+}
