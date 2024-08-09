@@ -1,9 +1,6 @@
 export const rootUri = "/workspace";
 export const indexFileUri = `${rootUri}/index.ts`;
-export const indexFileContent = `import { print } from "./lib.ts";
+export const indexFileContent = `import capitalize from "lodash/capitalize";
 
-print();
+capitalize("iTs sTrAnGe");
 `;
-
-export const libFileUri = `${rootUri}/lib.ts`;
-export const libFileContent = `export function print() {}`;

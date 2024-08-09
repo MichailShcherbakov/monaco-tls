@@ -1,5 +1,6 @@
 import "@codingame/monaco-vscode-theme-defaults-default-extension";
 import "@codingame/monaco-vscode-typescript-basics-default-extension";
+import "@codingame/monaco-vscode-typescript-language-features-default-extension";
 import getKeybindingsServiceOverride from "@codingame/monaco-vscode-keybindings-service-override";
 import getThemeServiceOverride from "@codingame/monaco-vscode-theme-service-override";
 import getTextmateServiceOverride from "@codingame/monaco-vscode-textmate-service-override";
@@ -17,12 +18,7 @@ import {
   toSocket,
 } from "vscode-ws-jsonrpc";
 import { createLanguageClient } from "./create_language_client";
-import {
-  indexFileContent,
-  indexFileUri,
-  libFileContent,
-  libFileUri,
-} from "./constants";
+import { indexFileContent, indexFileUri } from "./constants";
 import "vscode/localExtensionHost";
 
 export const bootstrap = async () => {
@@ -41,30 +37,18 @@ export const bootstrap = async () => {
   });
 
   const indexUri = monaco.Uri.file(indexFileUri);
-  const libUri = monaco.Uri.file(libFileUri);
 
   const fileSystemProvider = new RegisteredFileSystemProvider(false);
 
   fileSystemProvider.registerFile(
     new RegisteredMemoryFile(indexUri, indexFileContent)
   );
-  // fileSystemProvider.registerFile(
-  //   new RegisteredMemoryFile(libUri, libFileContent)
-  // );
 
   registerFileSystemOverlay(1, fileSystemProvider);
 
   const modelRef = await monaco.editor.createModelReference(indexUri);
 
   const model = modelRef.object.textEditorModel;
-
-  monaco.editor.registerEditorOpener({
-    openCodeEditor(source, resource, selectionOrPosition) {
-      debugger;
-
-      return false;
-    },
-  });
 
   monaco.editor.create(document.getElementById("monaco-editor-root")!, {
     model,
