@@ -1,5 +1,4 @@
 import http from "node:http";
-import path from "node:path";
 import { IWebSocket } from "vscode-ws-jsonrpc";
 
 import { WebSocketServer } from "ws";
